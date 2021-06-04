@@ -39,7 +39,7 @@
                 <th scope="row" class="table-dark">Delivery Method</th>
                 <td><%= @order.delivery_method %></td>
               </tr>
-              <% if @order.postcode != "42300" %>
+              <% if @order.postcode != "42300" || "48010" || "47000"%>
               <tr>
                 <th scope="row" class="table-dark">Delivery Surcharge</th>
                 <td>RM25.00</td>

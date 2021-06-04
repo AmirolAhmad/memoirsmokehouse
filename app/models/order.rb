@@ -28,7 +28,16 @@ class Order < ApplicationRecord
   end
 
   def create_totalprice
+    if self.delivery_method == "Rider Delivery"
+      if self.postcode == "42300" || "48010" || "47000"
+        cal_delivery = 0
+      else
+        cal_delivery = 25
+      end
+    else
+      cal_delivery = 0
+    end
     a = self.menu.to_a.map {|x| x.price.to_i}.sum
-    self.update_attribute(:total_price, a)
+    self.update_attribute(:total_price, a + cal_delivery)
   end
 end
