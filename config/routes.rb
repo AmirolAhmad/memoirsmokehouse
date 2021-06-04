@@ -27,6 +27,7 @@ Rails.application.routes.draw do
         patch :mark_unpaid
       end
     end
+    resources :promocodes, except: [:show]
   end
   get '/search' => 'orders#search'
 end

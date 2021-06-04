@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_04_104839) do
+ActiveRecord::Schema.define(version: 2021_06_04_180207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,21 @@ ActiveRecord::Schema.define(version: 2021_06_04_104839) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "delivery_surcharge"
     t.boolean "paid", default: false
+    t.string "promocode"
     t.index ["state_id"], name: "index_orders_on_state_id"
+  end
+
+  create_table "promocodes", force: :cascade do |t|
+    t.string "code"
+    t.datetime "expired_at"
+    t.integer "status", default: 0, null: false
+    t.integer "count", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "value_percent"
+    t.integer "fixed_amount"
+    t.integer "limit", default: 100
+    t.index ["code"], name: "index_promocodes_on_code", unique: true
   end
 
   create_table "states", force: :cascade do |t|

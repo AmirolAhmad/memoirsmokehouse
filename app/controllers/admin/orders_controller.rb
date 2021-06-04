@@ -5,6 +5,7 @@ class Admin::OrdersController < AdminController
 
   def show
     @order = Order.find params[:id]
+    @promo = Promocode.find_by_code(@order.promocode)
   end
 
   def destroy

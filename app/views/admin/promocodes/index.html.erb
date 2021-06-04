@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      <%= render "admin/sidebar" %>
+    </div>
+    <div class="col">
+      <%= link_to "New Promo code", new_admin_promocode_path, class: "btn btn-primary" %>
+      <hr>
+      <table class="table table-dark table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th>No</th>
+            <th>Code</th>
+            <th>Discount (%)</th>
+            <th>Fixed Amount</th>
+            <th>Count</th>
+            <th>Limit</th>
+            <th>Expired At</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @promocodes.each_with_index do |promocode,index| %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= promocode.code %></td>
+              <td><%= promocode.value_percent %></td>
+              <td><%= number_to_currency(promocode.fixed_amount, unit: "RM") %></td>
+              <td><%= promocode.count %></td>
+              <td><%= promocode.limit %></td>
+              <td><%= promocode.expired_at %></td>
+              <td><%= check_promo_status(promocode) %></td>
+              <td>
+                <%= link_to "Edit", edit_admin_promocode_path(promocode), class: "btn btn-success btn-sm" %>
+                <%= link_to 'Delete', admin_promocode_path(promocode), method: :delete, data: { confirm: 'Are you sure?', turbolinks: false }, class: "btn btn-danger btn-sm" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

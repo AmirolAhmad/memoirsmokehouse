@@ -1,0 +1,51 @@
+<% if @promocode.errors.any? %>
+<div class="alert alert-danger alert-dismissable fade show">
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  <strong><%= pluralize(@promocode.errors.count, "error") %> prohibited this user from being saved:</strong>
+  <ul>
+    <% @promocode.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title">Promo Code Form</h5>
+  </div>
+  <div class="card-body">
+    <div class="form-group">
+      <%= f.label :code, "Code" %>
+      <%= f.text_field :code, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :expired_at, "Expired At" %>
+      <%= f.datetime_local_field :expired_at, class: "form-control" %>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <%= f.label :value_percent, "Discount (%)" %>
+          <%= f.text_field :value_percent, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <%= f.label :fixed_amount, "Fixed Amount" %>
+          <%= f.text_field :fixed_amount, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <%= f.label :limit, "Limit" %>
+          <%= f.text_field :limit, class: "form-control" %>
+          <div id="limitHelp" class="form-text">
+              (default: 100)
+            </div>
+        </div>
+      </div>
+    </div>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  </div>
+</div>

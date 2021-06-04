@@ -1,0 +1,12 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      <%= render "admin/sidebar" %>
+    </div>
+    <div class="col">
+      <%= form_for @promocode, url: admin_promocodes_path(@promocode), multipart: true, html: { method: :post } do |f| %>
+        <%= render partial: 'form', locals: {f: f, promocode: @promocode} %>
+      <% end %>
+    </div>
+  </div>
+</div>

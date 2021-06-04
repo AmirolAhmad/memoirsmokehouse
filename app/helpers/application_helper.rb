@@ -22,4 +22,15 @@ module ApplicationHelper
       "<span class='badge rounded-pill bg-danger'>Unpaid</span>".html_safe
     end
   end
+
+  def check_promo_status(obj)
+    case obj.status
+    when "active"
+      "<span class='badge rounded-pill bg-success'>Active</span>".html_safe
+    when "inactive"
+      "<span class='badge rounded-pill bg-warning'>Inactive</span>".html_safe
+    else
+      "<span class='badge rounded-pill bg-danger'>Expired</span>".html_safe
+    end
+  end
 end
