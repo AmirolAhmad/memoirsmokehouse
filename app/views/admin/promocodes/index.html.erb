@@ -29,7 +29,7 @@
               <td><%= number_to_currency(promocode.fixed_amount, unit: "RM") %></td>
               <td><%= promocode.count %></td>
               <td><%= promocode.limit %></td>
-              <td><%= promocode.expired_at %></td>
+              <td><%= promocode.expired_at.strftime('%a, %d %b %Y %H:%M') %></td>
               <td><%= check_promo_status(promocode) %></td>
               <td>
                 <%= link_to "Edit", edit_admin_promocode_path(promocode), class: "btn btn-success btn-sm" %>
