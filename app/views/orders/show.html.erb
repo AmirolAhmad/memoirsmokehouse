@@ -3,10 +3,14 @@
     <div class="col-md-6 offset-md-3">
       <div class="card">
         <div class="card-header">
-          <h5 class="card-title">Order Details <%= @order.orderid %> <%= check_payment(@order) %></h5>
+          <h5 class="card-title">Order Details <%= check_payment(@order) %></h5>
         </div>
         <div class="card-body">
-
+          <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Thank you for your order!</h4>
+            <hr>
+            <p>Please keep your Order ID for your future references.<br />Your Order ID is <strong><%= @order.orderid %></strong></p>
+          </div>
           <table class="table table-bordered">
             <tbody>
               <tr>
@@ -75,7 +79,22 @@
               </tr>
             </tbody>
           </table>
-
+          <% if !@order.paid? %>
+          <div class="alert alert-warning" role="alert">
+            <h4 class="alert-heading">Please make your payment.</h4>
+            <p>Kindly, please make your payment to our account at:</p>
+            <p>
+              <strong>Bank Name: </strong>CIMB Berhad<br>
+              <strong>Bank Account Name: </strong>Rubiest Development<br>
+              <strong>Bank Account No: </strong>8603048868<br>
+            </p>
+            <hr>
+            <p class="mb-0">Use your <strong>Order ID</strong> as reference when making payment.</p>
+            <p>Please send us the receipt as proof of payment to <strong>+60 17 429 0525</strong> via <strong>Whatsapp</strong>.</p>
+            <p class="mb-0">Your order will be process once the transaction is completed.</p>
+            <p>Please do not hesitate to contact us at <strong>+60 17 429 0525</strong> if you have any question. Thank you!</p>
+          </div>
+          <% end %>
         </div>
       </div>
     </div>
