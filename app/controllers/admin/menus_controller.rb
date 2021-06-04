@@ -1,6 +1,6 @@
 class Admin::MenusController < AdminController
   def index
-    @menus = Menu.all
+    @menus = Menu.order('created_at ASC')
   end
 
   def new
