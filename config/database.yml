@@ -84,7 +84,4 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: MemoirSmokeHouse_production
-  username: MemoirSmokeHouse
-  password: <%= ENV['MEMOIRSMOKEHOUSE_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
