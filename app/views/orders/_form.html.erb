@@ -1,6 +1,6 @@
 <% if @order.errors.any? %>
-<div class="alert alert-danger alert-dismissable">
-  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+<div class="alert alert-danger alert-dismissable fade show">
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   <strong><%= pluralize(@order.errors.count, "error") %> prohibited this user from being saved:</strong>
   <ul>
     <% @order.errors.full_messages.each do |msg| %>
@@ -34,24 +34,43 @@
             <%= f.label :address2, "Address 2" %>
             <%= f.text_field :address2, class: "form-control" %>
           </div>
-          <div class="form-group">
-            <%= f.label :city, "City" %>
-            <%= f.text_field :city, class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :postcode, "Postcode" %>
-            <%= f.text_field :postcode, class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :state, "State" %>
-            <%= f.collection_select :state_id, State.order(:name), :id, :name, { prompt: "-- Choose" }, { class: 'form-control ' } %>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <%= f.label :city, "City" %>
+                <%= f.text_field :city, class: "form-control" %>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <%= f.label :postcode, "Postcode" %>
+                <%= f.text_field :postcode, class: "form-control" %>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <%= f.label :state, "State" %>
+                <%= f.collection_select :state_id, State.order(:name), :id, :name, { prompt: "-- Select" }, { class: 'form-control ' } %>
+              </div>
+            </div>
           </div>
           <div class="form-group">
             <%= f.label :delivery_method, "Delivery Method" %><br />
             <%= f.radio_button :delivery_method, "Self Pickup" %> Self Pickup<br />
             <%= f.radio_button :delivery_method, "Rider Delivery" %> Rider Delivery<br />
           </div>
+          <div class="form-group">
+          <label  class="form-label">Menu</label>
+          <ul class="list-group">
+          <% Menu.all.each do |menu| %>
+            <label class="list-group-item">
+                <%= check_box_tag "order[menu_ids][]", menu.id, f.object.menu.include?(menu), disabled: menu.outofstock? ? true : false %>
+                <%= menu.name %> - <%= menu.weight %><% if menu.weight != "NA" %>g <% end %> - <%= number_to_currency(menu.price, unit: "RM") %> <%= menu.outofstock? ? "<span class='badge bg-danger'>Out of Stock</span>".html_safe : "" %><br />
+            </label>
+          <% end %>
+          </ul>
         </div>
+          <%= f.submit "Submit", class: "btn btn-primary" %>
       </div>
     </div>
   </div>

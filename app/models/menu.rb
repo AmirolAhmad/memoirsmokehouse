@@ -1,4 +1,6 @@
 class Menu < ApplicationRecord
+  has_many :order_menus
+  has_many :order, through: :order_menus
   enum status: %i[instock outofstock]
 
   STATUS_SELECTION = [

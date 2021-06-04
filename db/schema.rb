@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_04_023333) do
+ActiveRecord::Schema.define(version: 2021_06_04_052553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 2021_06_04_023333) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "order_menus", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.bigint "menu_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "quantity"
+    t.index ["menu_id"], name: "index_order_menus_on_menu_id"
+    t.index ["order_id"], name: "index_order_menus_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -67,5 +77,7 @@ ActiveRecord::Schema.define(version: 2021_06_04_023333) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "order_menus", "menus"
+  add_foreign_key "order_menus", "orders"
   add_foreign_key "orders", "states"
 end

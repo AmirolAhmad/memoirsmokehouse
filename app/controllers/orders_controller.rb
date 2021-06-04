@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new order_params
     if @order.save
-      redirect_to order_path
+      redirect_to order_path(@order)
     else
       render 'new'
     end
@@ -20,6 +20,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:fullname, :phone_number, :address1, :address2, :city, :postcode, :state, :status, :total_price, :delivery_method)
+    params.require(:order).permit(:fullname, :phone_number, :address1, :address2, :city, :postcode, :state_id, :status, :total_price, :delivery_method, menu_ids:[:quantity])#, order_menus_attributes: [:_destroy, :id, :order_id, :menu_id, :total_price])
   end
 end

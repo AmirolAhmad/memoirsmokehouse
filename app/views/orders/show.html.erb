@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row align-items-start">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Order Details <%= @order.orderid %></h5>
+        </div>
+        <div class="card-body">
+
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th scope="row" class="table-dark">Full Name</th>
+                <td><%= @order.fullname %></td>
+              </tr>
+              <tr>
+                <th scope="row" class="table-dark">Phone Number</th>
+                <td><%= @order.phone_number %></td>
+              </tr>
+              <tr>
+                <th scope="row" class="table-dark">Address</th>
+                <td><%= @order.fulladdress %></td>
+              </tr>
+              <tr>
+                <th scope="row" class="table-dark">Menu</th>
+                <td>
+                  <ul class="list-group">
+                    <% @order.menu.each_with_index do |menu,index| %>
+                      <li class="list-group-item"><%= menu.name %> - <%= menu.weight %>g - <%= number_to_currency(menu.price, unit: "RM") %></li>
+                    <% end %>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" class="table-dark">Status</th>
+                <td><%= check_status(@order) %></td>
+              </tr>
+              <tr>
+                <th scope="row" class="table-dark">Delivery Method</th>
+                <td><%= @order.delivery_method %></td>
+              </tr>
+              <tr>
+                <th scope="row" class="table-dark">Total Price</th>
+                <td><%= number_to_currency(@order.total_price, unit: "RM") %></td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
