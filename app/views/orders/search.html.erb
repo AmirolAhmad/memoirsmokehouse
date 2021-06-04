@@ -3,7 +3,7 @@
     <div class="col-md-6 offset-md-3">
       <div class="card">
         <div class="card-header">
-          <h5 class="card-title">Order Details <%= @order.orderid %></h5>
+          <h5 class="card-title">Order Details <%= @order.orderid %> <%= check_payment(@order) %></h5>
         </div>
         <div class="card-body">
 

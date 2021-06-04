@@ -51,4 +51,22 @@ class Admin::OrdersController < AdminController
       render 'index'
     end
   end
+
+  def mark_paid
+    @order = Order.find params[:id]
+    if @order.update_attribute(:paid, true)
+      redirect_to admin_orders_path
+    else
+      render 'index'
+    end
+  end
+
+  def mark_unpaid
+    @order = Order.find params[:id]
+    if @order.update_attribute(:paid, false)
+      redirect_to admin_orders_path
+    else
+      render 'index'
+    end
+  end
 end

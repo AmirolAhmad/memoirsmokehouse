@@ -1,0 +1,2 @@
+$("#order-setpaid_<%= @order.id %>").html("<span class='badge bg-success'>Paid</span>".html_safe);
+$("#order-paid_<%= @order.id %>").html("<%=j link_to 'Set Paid', mark_paid_admin_order_path(@order), method: :patch, remote: true, class: 'btn btn-success btn-sm' %>");

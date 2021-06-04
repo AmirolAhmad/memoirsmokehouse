@@ -10,6 +10,7 @@
             <th>No</th>
             <th>Order ID</th>
             <th>Full Name</th>
+            <th>Delivery Method</th>
             <th>Total Price</th>
             <th colspan=2>Status</th>
             <th>Date Created</th>
@@ -20,8 +21,9 @@
           <% @orders.each_with_index do |order,index| %>
             <tr>
               <td><%= index + 1 %></td>
-              <td><%= order.orderid %></td>
+              <td><%= order.orderid %> <%= check_payment(order) %></td>
               <td><%= order.fullname %></td>
+              <td><%= order.delivery_method %></td>
               <td><%= number_to_currency(order.total_price, unit: "RM") %></td>
               <td id="order-setstatus_<%= order.id %>"><%= check_status(order) %></td>
               <td id="order-status_<%= order.id %>">
@@ -33,6 +35,11 @@
                   <%= link_to "Set Delivered", mark_delivered_admin_order_path(order), method: :patch, remote: true, class: "btn btn-primary btn-sm" %>
                 <% elsif order.status == "delivered" %>
                   <%= link_to "Set Cancelled", mark_cancelled_admin_order_path(order), method: :patch, remote: true, class: "btn btn-danger btn-sm" %>
+                <% end %>
+                <% if order.paid == false %>
+                  <%= link_to "Set Paid", mark_paid_admin_order_path(order), method: :patch, remote: true, class: "btn btn-success btn-sm" %>
+                <% else %>
+                  <%= link_to "Set Unpaid", mark_unpaid_admin_order_path(order), method: :patch, remote: true, class: "btn btn-danger btn-sm" %>
                 <% end %>
               </td>
               <td><%= order.created_at.strftime("%d %B %Y") %></td>

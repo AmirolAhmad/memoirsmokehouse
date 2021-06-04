@@ -22,6 +22,8 @@ Rails.application.routes.draw do
         patch :mark_delivering
         patch :mark_delivered
         patch :mark_cancelled
+        patch :mark_paid
+        patch :mark_unpaid
       end
     end
   end
