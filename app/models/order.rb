@@ -53,14 +53,18 @@ class Order < ApplicationRecord
     end
     a = self.menu.to_a.map {|x| x.price.to_i}.sum
 
-    promo = Promocode.find_by_code(self.promocode)
-    if promo.fixed_amount.present?
-      b = promo.fixed_amount
+    if self.promocode.present?
+      promo = Promocode.find_by_code(self.promocode)
+      if promo.fixed_amount.present?
+        b = promo.fixed_amount
+      else
+        cb = promo.value_percent
+        b = a*cb/100
+      end
+      self.update_attribute(:total_price, a + cal_delivery - b)
+      promo.update_attribute(:count, promo.count+1)
     else
-      cb = promo.value_percent
-      b = a*cb/100
+      self.update_attribute(:total_price, a + cal_delivery)
     end
-    self.update_attribute(:total_price, a + cal_delivery - b)
-    promo.update_attribute(:count, promo.count+1)
   end
 end

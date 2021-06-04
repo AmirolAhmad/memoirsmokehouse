@@ -6,16 +6,24 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new order_params
-    @promo = Promocode.find_by_code(@order.promocode)
-    if @promo && @promo.count < @promo.limit && Time.now.strftime('%a, %d %b %Y %H:%M:%S') < @promo.expired_at.strftime('%a, %d %b %Y %H:%M:%S')
+    if @order.promocode.present?
+      @promo = Promocode.find_by_code(@order.promocode)
+      if @promo && @promo.count < @promo.limit && Time.now.strftime('%a, %d %b %Y %H:%M:%S') < @promo.expired_at.strftime('%a, %d %b %Y %H:%M:%S')
+        if @order.save
+          redirect_to order_path(@order)
+        else
+          render 'new'
+        end
+      else
+        flash.now[:error] = "Promocode is not valid"
+        render 'new'
+      end
+    else
       if @order.save
         redirect_to order_path(@order)
       else
         render 'new'
       end
-    else
-      flash.now[:error] = "Promocode is not valid"
-      render 'new'
     end
   end
 

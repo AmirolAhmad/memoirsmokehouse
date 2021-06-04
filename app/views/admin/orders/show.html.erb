@@ -46,6 +46,7 @@
                 <th scope="row" class="table-dark">Delivery Surcharge</th>
                 <td><%= number_to_currency(@order.delivery_surcharge, unit: "RM") %></td>
               </tr>
+              <% if @order.promocode.present? %>
               <tr>
                 <th scope="row" class="table-dark">Discount</th>
                 <td>
@@ -56,6 +57,7 @@
                   <% end %>
                 </td>
               </tr>
+              <% end %>
               <tr>
                 <th scope="row" class="table-dark">Total Price</th>
                 <td><%= number_to_currency(@order.total_price, unit: "RM") %></td>
