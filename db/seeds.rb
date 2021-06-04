@@ -5,3 +5,21 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+["Perlis",
+  "Kedah",
+  "P. Pinang",
+  "Perak",
+  "Kelantan",
+  "Terengganu",
+  "Pahang",
+  "Selangor",
+  "W.P Kuala Lumpur",
+  "Putrajaya",
+  "Melaka",
+  "N. Sembilan",
+  "Johor",
+  "Sarawak",
+  "Sabah",
+  "W.P Labuan"].each do |name|
+   State.find_or_create_by(name: name)
+ end

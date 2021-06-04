@@ -10,9 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2021_06_04_001927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "orders", force: :cascade do |t|
+    t.string "fullname"
+    t.string "address1"
+    t.string "address2"
+    t.string "city"
+    t.string "postcode"
+    t.bigint "state_id", null: false
+    t.string "phone_number"
+    t.string "delivery_method"
+    t.integer "status", default: 0, null: false
+    t.decimal "total_price", precision: 8, scale: 2
+    t.string "orderid"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["state_id"], name: "index_orders_on_state_id"
+  end
+
+  create_table "states", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "orders", "states"
 end
