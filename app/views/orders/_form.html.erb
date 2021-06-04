@@ -72,7 +72,7 @@
           <ul class="list-group">
           <% Menu.all.each do |menu| %>
             <label class="list-group-item">
-                <%= check_box_tag "order[menu_ids][]", menu.id, f.object.menu.include?(menu), disabled: menu.outofstock? ? true : false, required: true %>
+                <%= check_box_tag "order[menu_ids][]", menu.id, f.object.menu.include?(menu), disabled: menu.outofstock? ? true : false %>
                 <%= menu.name %> - <%= menu.weight %><% if menu.weight != "NA" %>g <% end %> - <%= number_to_currency(menu.price, unit: "RM") %> <%= menu.outofstock? ? "<span class='badge bg-danger'>Out of Stock</span>".html_safe : "" %><br />
             </label>
           <% end %>

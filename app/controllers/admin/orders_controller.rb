@@ -1,6 +1,6 @@
 class Admin::OrdersController < AdminController
   def index
-    @orders = Order.all
+    @orders = Order.order('created_at ASC')
   end
 
   def show
