@@ -1,0 +1,50 @@
+<% if @menu.errors.any? %>
+<div class="alert alert-danger alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <strong><%= pluralize(@menu.errors.count, "error") %> prohibited this user from being saved:</strong>
+  <ul>
+    <% @menu.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title">Menu Form</h5>
+  </div>
+  <div class="card-body">
+    <div class="form-group">
+      <%= f.label :name, "Name" %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :desription, "Description" %>
+      <%= f.text_area :desription, class: "form-control" %>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <%= f.label :weight, "Weight" %>
+          <%= f.text_field :weight, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <%= f.label :price, "Price per unit" %>
+          <%= f.text_field :price, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <%= f.label :status, "Status" %>
+          <%#= f.select :status, options_for_select(Menu.statuses.map { |key, value| [key.capitalize, value] }),{}, class: "form-control" %>
+          <%= f.select :status, Menu::STATUS_SELECTION,{}, {class: 'form-control'} %>
+        </div>
+      </div>
+    </div>
+
+<%= f.submit "Submit", class: "btn btn-primary" %>
+  </div>
+</div>

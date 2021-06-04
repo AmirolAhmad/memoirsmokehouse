@@ -1,0 +1,12 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      <%= render "admin/sidebar" %>
+    </div>
+    <div class="col">
+      <%= form_for @menu, url: admin_menus_path(@menu), multipart: true, html: { method: :post } do |f| %>
+        <%= render partial: 'form', locals: {f: f, menu: @menu} %>
+      <% end %>
+    </div>
+  </div>
+</div>

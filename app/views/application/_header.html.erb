@@ -15,6 +15,18 @@
         <li class="nav-item">
           <%= link_to "New Order", new_order_path, class: "nav-link" %>
         </li>
+        <% if !user_signed_in? %>
+          <%= link_to login_path, data: { turbolinks: false }, class: "nav-link" do %>
+            <i class="icon-user-male"></i> Sign in
+          <% end %>
+        <% else %>
+          <%= link_to admin_master_path, data: { turbolinks: false }, class: "nav-link" do %>
+            <i class="icon-home"></i> My Dashboard
+          <% end %>
+          <%= link_to destroy_user_session_path, method: :delete, class: "nav-link", data: { turbolinks: false } do %>
+            <i class="sign-out"></i> Sign out
+          <% end %>
+        <% end %>
       </ul>
     </div>
   </div>
