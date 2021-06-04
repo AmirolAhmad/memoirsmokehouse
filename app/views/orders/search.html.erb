@@ -22,6 +22,10 @@
                 <td><%= @order.fulladdress %></td>
               </tr>
               <tr>
+                <th scope="row" class="table-dark">Order Created</th>
+                <td><%= @order.created_at.strftime("%d %B %Y") %></td>
+              </tr>
+              <tr>
                 <th scope="row" class="table-dark">Menu</th>
                 <td>
                   <ul class="list-group">
@@ -33,18 +37,38 @@
               </tr>
               <tr>
                 <th scope="row" class="table-dark">Status</th>
-                <td><%= check_status(@order) %></td>
+                <td>
+                  <% if @order.received? %>
+                    <span class="badge bg-success">Order Received</span>
+                    <span class="badge bg-secondary">Preparing</span>
+                    <span class="badge bg-secondary">Delivering</span>
+                    <span class="badge bg-secondary">Delivered</span>
+                  <% elsif @order.preparing? %>
+                    <span class="badge bg-secondary">Order Received</span>
+                    <span class="badge bg-warning">Preparing</span>
+                    <span class="badge bg-secondary">Delivering</span>
+                    <span class="badge bg-secondary">Delivered</span>
+                  <% elsif @order.delivering? %>
+                    <span class="badge bg-secondary">Order Received</span>
+                    <span class="badge bg-secondary">Preparing</span>
+                    <span class="badge bg-info">Delivering</span>
+                    <span class="badge bg-secondary">Delivered</span>
+                  <% elsif @order.delivered? %>
+                    <span class="badge bg-secondary">Order Received</span>
+                    <span class="badge bg-secondary">Preparing</span>
+                    <span class="badge bg-secondary">Delivering</span>
+                    <span class="badge bg-primary">Delivered</span>
+                  <% end %>
+                </td>
               </tr>
               <tr>
                 <th scope="row" class="table-dark">Delivery Method</th>
                 <td><%= @order.delivery_method %></td>
               </tr>
-              <% if @order.postcode != "42300" || "48010" || "47000"%>
               <tr>
                 <th scope="row" class="table-dark">Delivery Surcharge</th>
-                <td>RM25.00</td>
+                <td><%= number_to_currency(@order.delivery_surcharge, unit: "RM") %></td>
               </tr>
-              <% end %>
               <tr>
                 <th scope="row" class="table-dark">Total Price</th>
                 <td><%= number_to_currency(@order.total_price, unit: "RM") %></td>

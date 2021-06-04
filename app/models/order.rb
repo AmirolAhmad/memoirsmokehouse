@@ -1,11 +1,12 @@
 class Order < ApplicationRecord
   belongs_to :state
-  has_many :order_menus
+  has_many :order_menus, dependent: :destroy
   has_many :menu, through: :order_menus
-  enum status: %i[received preparing delivering delivered]
+  enum status: %i[received preparing delivering delivered cancelled]
 
   after_create :create_orderid
   after_create :create_totalprice
+  after_create :create_deliverysurcharge
 
   def fulladdress
     "#{address1}, #{address2}, #{postcode} #{city}, #{state.name}"
@@ -27,9 +28,22 @@ class Order < ApplicationRecord
     self.update_attribute(:orderid, "MSH-" + ref_no + Time.zone.now.year.to_s)
   end
 
+  def create_deliverysurcharge
+    if self.delivery_method == "Rider Delivery"
+      if self.postcode == "42300" || self.postcode == "48010" || self.postcode == "47000"
+        cal_delivery = 0
+      else
+        cal_delivery = 25
+      end
+    else
+      cal_delivery = 0
+    end
+    self.update_attribute(:delivery_surcharge, cal_delivery)
+  end
+
   def create_totalprice
     if self.delivery_method == "Rider Delivery"
-      if self.postcode == "42300" || "48010" || "47000"
+      if self.postcode == "42300" || self.postcode == "48010" || self.postcode == "47000"
         cal_delivery = 0
       else
         cal_delivery = 25

@@ -1,0 +1,2 @@
+$("#order-setstatus_<%= @order.id %>").html("<span class='badge bg-warning'>Preparing</span>".html_safe);
+$("#order-status_<%= @order.id %>").html("<%=j link_to 'Set Preparing', mark_preparing_admin_order_path(@order), method: :patch, remote: true, class: 'btn btn-warning btn-sm' %>");

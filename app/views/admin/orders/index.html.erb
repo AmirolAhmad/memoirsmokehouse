@@ -11,7 +11,7 @@
             <th>Order ID</th>
             <th>Full Name</th>
             <th>Total Price</th>
-            <th>Status</th>
+            <th colspan=2>Status</th>
             <th>Date Created</th>
             <th>Action</th>
           </tr>
@@ -23,9 +23,23 @@
               <td><%= order.orderid %></td>
               <td><%= order.fullname %></td>
               <td><%= number_to_currency(order.total_price, unit: "RM") %></td>
-              <td><%= check_status(order) %></td>
-                <td><%= order.created_at.strftime("%d %B %Y") %></td>
-              <td><%= link_to "Preview", admin_order_path(order), class: "btn btn-primary btn-sm" %></td>
+              <td id="order-setstatus_<%= order.id %>"><%= check_status(order) %></td>
+              <td id="order-status_<%= order.id %>">
+                <% if order.status == "received" %>
+                  <%= link_to "Set Preparing", mark_preparing_admin_order_path(order), method: :patch, remote: true, class: "btn btn-warning btn-sm" %>
+                <% elsif order.status == "preparing" %>
+                  <%= link_to "Set Delivering", mark_delivering_admin_order_path(order), method: :patch, remote: true, class: "btn btn-info btn-sm" %>
+                <% elsif order.status == "delivering" %>
+                  <%= link_to "Set Delivered", mark_delivered_admin_order_path(order), method: :patch, remote: true, class: "btn btn-primary btn-sm" %>
+                <% elsif order.status == "delivered" %>
+                  <%= link_to "Set Cancelled", mark_cancelled_admin_order_path(order), method: :patch, remote: true, class: "btn btn-danger btn-sm" %>
+                <% end %>
+              </td>
+              <td><%= order.created_at.strftime("%d %B %Y") %></td>
+              <td>
+                <%= link_to "Preview", admin_order_path(order), class: "btn btn-primary btn-sm" %>
+                <%= link_to 'Delete', admin_order_path(order), method: :delete, data: { confirm: 'Are you sure?', turbolinks: false }, class: "btn btn-danger btn-sm" %>
+              </td>
             </tr>
           <% end %>
         </tbody>

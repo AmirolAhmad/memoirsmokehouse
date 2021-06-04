@@ -16,7 +16,14 @@ Rails.application.routes.draw do
   namespace :admin, path: '/master' do
     get "/" => "dashboard#index", as: 'master'
     resources :menus, except: [:show, :destroy]
-    resources :orders, except: [:new, :create, :edit, :update, :destroy]
+    resources :orders, except: [:new, :create, :edit, :update] do
+      member do
+        patch :mark_preparing
+        patch :mark_delivering
+        patch :mark_delivered
+        patch :mark_cancelled
+      end
+    end
   end
   get '/search' => 'orders#search'
 end

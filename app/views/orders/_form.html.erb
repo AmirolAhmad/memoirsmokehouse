@@ -22,10 +22,12 @@
             <%= f.label :fullname, "Full Name" %>
             <%= f.text_field :fullname, class: "form-control" %>
           </div>
+          <hr>
           <div class="form-group">
             <%= f.label :phone_number, "Phone Number" %>
             <%= f.text_field :phone_number, class: "form-control" %>
           </div>
+          <hr>
           <div class="form-group">
             <%= f.label :address1, "Address 1" %>
             <%= f.text_field :address1, class: "form-control" %>
@@ -34,6 +36,7 @@
             <%= f.label :address2, "Address 2" %>
             <%= f.text_field :address2, class: "form-control" %>
           </div>
+          <hr>
           <div class="row">
             <div class="col">
               <div class="form-group">
@@ -54,11 +57,16 @@
               </div>
             </div>
           </div>
+          <hr>
           <div class="form-group">
             <%= f.label :delivery_method, "Delivery Method" %><br />
-            <%= f.radio_button :delivery_method, "Self Pickup" %> Self Pickup<br />
+            <%= f.radio_button :delivery_method, "Self Pickup" %> Self Pickup (Puncak Alam)<br />
             <%= f.radio_button :delivery_method, "Rider Delivery" %> Rider Delivery<br />
+            <div id="deliveryHelp" class="form-text">
+              (Note: For rider delivery, RM25 will be charged except Puncak Alam, Saujana Utama and Bandar Tasek Puteri)
+            </div>
           </div>
+          <hr>
           <div class="form-group">
           <label  class="form-label">Menu</label>
           <ul class="list-group">
