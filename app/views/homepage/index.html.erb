@@ -1,9 +1,44 @@
-<div class="container">
-  <div class="row align-items-start">
-    <div class="col-md-6 offset-md-3">
+<div class="container col-xxl-8 px-1">
+  <div class="row flex-lg-row-reverse align-items-center g-5">
+    <div class="col-10 col-sm-8 col-lg-6">
+      <%= image_tag "splash1.jpg", class: "d-block mx-lg-auto img-fluid", alt: "brisket", width: 700, height: 500, loading: "lazy" %>
+    </div>
+    <div class="col-lg-6">
+      <h1 class="display-5 fw-bold lh-1 mb-3">The Best Beef Brisket in Town</h1>
+      <p class="lead">We provide a wide variety of premium smoked-based meat foods; takes about 12 hours and up to cook. Definitely a taste that you will never forget!</p>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <%= link_to "Order NOW!", new_order_path, class: "btn btn-primary btn-lg px-4 me-md-2" %>
+      </div>
+    </div>
+  </div>
+</div>
 
-      <%= image_tag "poster.png", class: "img-fluid", alt: '"poster.png"' %>
-      
+<div class="container px-4 py-5" id="custom-cards">
+  <hr>
+
+  <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+    <div class="col">
+      <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url(<%= asset_path 'splash2a.jpg' %>);">
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+          <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Juicy & Flavouring</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url(<%= asset_path 'splash3a.jpg' %>);">
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+          <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Rambutan Wood</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url(<%= asset_path 'splash4a.jpg' %>);">
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+          <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Premium NZ & Aussie Beef</h2>
+        </div>
+      </div>
     </div>
   </div>
 </div>
