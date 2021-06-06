@@ -62,6 +62,10 @@
                 <th scope="row" class="table-dark">Total Price</th>
                 <td><%= number_to_currency(@order.total_price, unit: "RM") %></td>
               </tr>
+              <tr>
+                <th scope="row" class="table-dark">Note</th>
+                <td><%= @order.note %></td>
+              </tr>
             </tbody>
           </table>
 

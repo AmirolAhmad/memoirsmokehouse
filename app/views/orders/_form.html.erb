@@ -88,6 +88,10 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
           <% end %>
+          <div class="form-group">
+            <%= f.label :note, "Note" %>
+            <%= f.text_area :note, class: "form-control", row: 3 %>
+          </div>
           <%= f.submit "Submit", class: "btn btn-primary" %>
         </div>
       </div>
