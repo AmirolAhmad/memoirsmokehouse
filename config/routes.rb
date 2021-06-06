@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:new, :create, :show]
   root 'homepage#index'
   get '/menu' => 'homepage#menu'
+  get '/contact' => 'homepage#contact'
   namespace :admin, path: '/master' do
     get "/" => "dashboard#index", as: 'master'
     resources :menus, except: [:show, :destroy]
