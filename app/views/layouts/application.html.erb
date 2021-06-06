@@ -19,5 +19,11 @@
     <%= yield %>
     <%= render "footer" %>
     <%= render "fb" %>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#dt').DataTable();
+      })
+    </script>
   </body>
 </html>
