@@ -43,7 +43,7 @@ class Order < ApplicationRecord
 
   def create_totalprice
     if self.delivery_method == "Rider Delivery"
-      if self.postcode == "42300" || self.postcode == "48010" || self.postcode == "47000"
+      if self.postcode == "42300" || self.postcode == "48010" || self.postcode == "47000" || self.postcode == "48020"
         cal_delivery = 0
       else
         cal_delivery = 25
