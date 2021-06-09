@@ -5,5 +5,5 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-1BJEEPCTB1');
+  gtag('config', "<%= Rails.application.credentials.ga[:ga_code] %>");
 </script>
