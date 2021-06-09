@@ -10,10 +10,14 @@
           <h5 class="card-title">Order Details <%= check_payment(@order) %></h5>
         </div>
         <div class="card-body">
-          <div class="alert alert-success" role="alert">
+          <div class="d-grid gap-2 mb-1">
+            <a href="whatsapp://send?text=<%= request.base_url %>/order?search=<%=@order.orderid %>" class="btn btn-success"><i class="fab fa-whatsapp"></i> Share on WhatsApp</a>
+          </div>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
             <h4 class="alert-heading">Thank you for your order!</h4>
             <hr>
             <p>Please keep your Order ID for your future references.<br />Your Order ID is <strong><%= @order.orderid %></strong></p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
           <table class="table table-bordered">
             <tbody>

@@ -6,7 +6,7 @@
     <div class="col-lg-10 col-md-8 col-sm-12">
       <div class="card">
         <div class="card-header">
-          <h5 class="card-title">Order Details <%= @order.orderid %> <%= check_payment(@order) %></h5>
+          <h5 class="card-title">Order Details <%= @order.orderid %> <%= check_payment(@order) %> <a href="whatsapp://send?text=<%= request.base_url %>/order?search=<%=@order.orderid %>" class="btn btn-success"><i class="fab fa-whatsapp"></i> Share on WhatsApp</a></h5>
         </div>
         <div class="card-body">
 
