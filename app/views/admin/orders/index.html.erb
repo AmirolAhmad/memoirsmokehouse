@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-2">
+    <div class="col-lg-2 col-md-4 col-sm-12">
       <%= render "admin/sidebar" %>
     </div>
-    <div class="col">
+    <div class="col-lg-10 col-md-8 col-sm-12">
       <table id="dt" class="table table-dark table-striped">
         <thead class="thead-dark">
           <tr>
@@ -13,7 +13,7 @@
             <th>Delivery Method</th>
             <th>Total Price</th>
             <th colspan="2">Status</th>
-            <th>Date Created</th>
+            <th>Date Ordered</th>
             <th>Delivery Date</th>
             <th>Action</th>
           </tr>
@@ -28,26 +28,30 @@
               <td><%= number_to_currency(order.total_price, unit: "RM") %></td>
               <td id="order-setstatus_<%= order.id %>"><%= check_status(order) %></td>
               <td id="order-status_<%= order.id %>">
-                <% if order.status == "received" %>
-                  <%= link_to "Set Preparing", mark_preparing_admin_order_path(order), method: :patch, remote: true, class: "btn btn-warning btn-sm" %>
-                <% elsif order.status == "preparing" %>
-                  <%= link_to "Set Delivering", mark_delivering_admin_order_path(order), method: :patch, remote: true, class: "btn btn-info btn-sm" %>
-                <% elsif order.status == "delivering" %>
-                  <%= link_to "Set Delivered", mark_delivered_admin_order_path(order), method: :patch, remote: true, class: "btn btn-primary btn-sm" %>
-                <% elsif order.status == "delivered" %>
-                  <%= link_to "Set Cancelled", mark_cancelled_admin_order_path(order), method: :patch, remote: true, class: "btn btn-danger btn-sm" %>
-                <% end %>
-                <% if order.paid == false %>
-                  <%= link_to "Set Paid", mark_paid_admin_order_path(order), method: :patch, remote: true, class: "btn btn-success btn-sm" %>
-                <% else %>
-                  <%= link_to "Set Unpaid", mark_unpaid_admin_order_path(order), method: :patch, remote: true, class: "btn btn-danger btn-sm" %>
-                <% end %>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                  <% if order.status == "received" %>
+                    <%= link_to "Set Preparing", mark_preparing_admin_order_path(order), method: :patch, remote: true, class: "btn btn-warning" %>
+                  <% elsif order.status == "preparing" %>
+                    <%= link_to "Set Delivering", mark_delivering_admin_order_path(order), method: :patch, remote: true, class: "btn btn-info" %>
+                  <% elsif order.status == "delivering" %>
+                    <%= link_to "Set Delivered", mark_delivered_admin_order_path(order), method: :patch, remote: true, class: "btn btn-primary" %>
+                  <% elsif order.status == "delivered" %>
+                    <%= link_to "Set Cancelled", mark_cancelled_admin_order_path(order), method: :patch, remote: true, class: "btn btn-danger" %>
+                  <% end %>
+                  <% if order.paid == false %>
+                    <%= link_to "Set Paid", mark_paid_admin_order_path(order), method: :patch, remote: true, class: "btn btn-success" %>
+                  <% else %>
+                    <%= link_to "Set Unpaid", mark_unpaid_admin_order_path(order), method: :patch, remote: true, class: "btn btn-danger" %>
+                  <% end %>
+                </div>
               </td>
               <td><%= order.created_at.strftime("%d %B %Y") %></td>
               <td><%= order.delivery_date_id? ? order.delivery_date.date.strftime('%a, %d %b %Y') : "N/A" %></td>
               <td>
-                <%= link_to "Preview", admin_order_path(order), class: "btn btn-primary btn-sm" %>
-                <%= link_to 'Delete', admin_order_path(order), method: :delete, data: { confirm: 'Are you sure?', turbolinks: false }, class: "btn btn-danger btn-sm" %>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                  <%= link_to "Preview", admin_order_path(order), class: "btn btn-primary" %>
+                  <%= link_to 'Delete', admin_order_path(order), method: :delete, data: { confirm: 'Are you sure?', turbolinks: false }, class: "btn btn-danger" %>
+                </div>
               </td>
             </tr>
           <% end %>

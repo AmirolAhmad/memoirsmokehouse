@@ -17,9 +17,9 @@ module ApplicationHelper
   def check_payment(obj)
     case obj.paid
     when true
-      "<span class='badge rounded-pill bg-success'>Paid</span>".html_safe
+      "<span class='badge rounded-pill bg-success'>$</span>".html_safe
     else
-      "<span class='badge rounded-pill bg-danger'>Unpaid</span>".html_safe
+      "<span class='badge rounded-pill bg-danger'>$</span>".html_safe
     end
   end
 

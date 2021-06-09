@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-2">
+    <div class="col-lg-2 col-md-4 col-sm-12">
       <%= render "admin/sidebar" %>
     </div>
-    <div class="col">
+    <div class="col-lg-10 col-md-8 col-sm-12">
       <%= link_to "New Promo code", new_admin_promocode_path, class: "btn btn-primary" %>
       <hr>
       <table class="table table-dark table-striped">
@@ -32,8 +32,10 @@
               <td><%= promocode.expired_at.strftime('%a, %d %b %Y %H:%M') %></td>
               <td><%= check_promo_status(promocode) %></td>
               <td>
-                <%= link_to "Edit", edit_admin_promocode_path(promocode), class: "btn btn-success btn-sm" %>
-                <%= link_to 'Delete', admin_promocode_path(promocode), method: :delete, data: { confirm: 'Are you sure?', turbolinks: false }, class: "btn btn-danger btn-sm" %>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                  <%= link_to "Edit", edit_admin_promocode_path(promocode), class: "btn btn-success" %>
+                  <%= link_to 'Delete', admin_promocode_path(promocode), method: :delete, data: { confirm: 'Are you sure?', turbolinks: false }, class: "btn btn-danger" %>
+                </div>
               </td>
             </tr>
           <% end %>

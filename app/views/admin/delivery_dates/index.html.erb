@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-2">
+    <div class="col-lg-2 col-md-4 col-sm-12">
       <%= render "admin/sidebar" %>
     </div>
-    <div class="col">
+    <div class="col-lg-10 col-md-8 col-sm-12">
       <%= link_to "New Delivery Date", new_admin_delivery_date_path, class: "btn btn-primary" %>
       <hr>
       <table class="table table-dark table-striped">
@@ -27,8 +27,10 @@
                 <% end %>
               </td>
               <td>
-                <%= link_to "Edit", edit_admin_delivery_date_path(delivery_date), class: "btn btn-success btn-sm" %>
-                <%= link_to 'Delete', admin_delivery_date_path(delivery_date), method: :delete, data: { confirm: 'Are you sure?', turbolinks: false }, class: "btn btn-danger btn-sm" %>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                  <%= link_to "Edit", edit_admin_delivery_date_path(delivery_date), class: "btn btn-success" %>
+                  <%= link_to 'Delete', admin_delivery_date_path(delivery_date), method: :delete, data: { confirm: 'Are you sure?', turbolinks: false }, class: "btn btn-danger" %>
+                </div>
               </td>
             </tr>
           <% end %>

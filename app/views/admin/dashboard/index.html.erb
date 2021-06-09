@@ -1,11 +1,19 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-2">
+    <div class="col-lg-2 col-md-4 col-sm-12">
       <%= render "admin/sidebar" %>
     </div>
-    <div class="col">
-      <div class="row">
-        <div class="col">
+    <div class="col-lg-10 col-md-8 col-sm-12">
+      <div class="row align-items-start">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card text-white bg-dark">
+            <div class="card-header">Total Order This Month</div>
+            <div class="card-body">
+              <h1 class="card-title"><%= @total_orders_this_month.count %></h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="card text-white bg-primary">
             <div class="card-header">Total Order This Week</div>
             <div class="card-body">
@@ -13,50 +21,15 @@
             </div>
           </div>
         </div>
-        <div class="col">
+        <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="card text-white bg-success">
-            <div class="card-header">Paid Order</div>
-            <div class="card-body">
-              <h1 class="card-title"><%= @paid_orders.count %></h1>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card text-white bg-secondary">
-            <div class="card-header">Unpaid Order</div>
-            <div class="card-body">
-              <h1 class="card-title"><%= @unpaid_orders.count %></h1>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card text-white bg-danger">
             <div class="card-header">Today's Order</div>
             <div class="card-body">
               <h1 class="card-title"><%= @today_orders.count %></h1>
             </div>
           </div>
         </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col">
-          <div class="card text-white bg-success">
-            <div class="card-header">Total Sales This Week</div>
-            <div class="card-body">
-              <h1 class="card-title"><%= number_to_currency(@total_weekly_paid_orders, unit: "RM") %></h1>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card text-white bg-info">
-            <div class="card-header">Total Sales This Month</div>
-            <div class="card-body">
-              <h1 class="card-title"><%= number_to_currency(@total_monthly_paid_orders, unit: "RM") %></h1>
-            </div>
-          </div>
-        </div>
-        <div class="col">
+        <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="card text-dark bg-light">
             <div class="card-header">Pending Delivery</div>
             <div class="card-body">
@@ -64,11 +37,38 @@
             </div>
           </div>
         </div>
-        <div class="col">
-          <div class="card text-white bg-dark">
-            <div class="card-header">Total Order This Month</div>
+      </div>
+      <hr>
+      <div class="row align-items-end">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card text-white bg-success">
+            <div class="card-header">Total Sales This Week</div>
             <div class="card-body">
-              <h1 class="card-title"><%= @total_orders_this_month.count %></h1>
+              <h1 class="card-title"><%= number_to_currency(@total_weekly_paid_orders, unit: "RM") %></h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card text-white bg-info">
+            <div class="card-header">Total Sales This Month</div>
+            <div class="card-body">
+              <h1 class="card-title"><%= number_to_currency(@total_monthly_paid_orders, unit: "RM") %></h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card text-white bg-danger">
+            <div class="card-header">Paid Order</div>
+            <div class="card-body">
+              <h1 class="card-title"><%= @paid_orders.count %></h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card text-white bg-secondary">
+            <div class="card-header">Unpaid Order</div>
+            <div class="card-body">
+              <h1 class="card-title"><%= @unpaid_orders.count %></h1>
             </div>
           </div>
         </div>
