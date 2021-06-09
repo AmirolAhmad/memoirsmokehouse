@@ -33,4 +33,13 @@ module ApplicationHelper
       "<span class='badge rounded-pill bg-danger'>Expired</span>".html_safe
     end
   end
+
+  def check_delivery_date_status(obj)
+    case obj.status
+    when "active"
+      "<span class='badge rounded-pill bg-success'>Active</span>".html_safe
+    else
+      "<span class='badge rounded-pill bg-danger'>In Active</span>".html_safe
+    end
+  end
 end

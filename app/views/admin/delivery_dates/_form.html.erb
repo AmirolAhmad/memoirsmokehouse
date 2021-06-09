@@ -1,0 +1,24 @@
+<% if @delivery_date.errors.any? %>
+<div class="alert alert-danger alert-dismissable fade show">
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  <strong><%= pluralize(@delivery_date.errors.count, "error") %> prohibited this user from being saved:</strong>
+  <ul>
+    <% @delivery_date.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title">Delivery Date Form</h5>
+  </div>
+  <div class="card-body">
+    <div class="form-group">
+      <%= f.label :date, "Date" %>
+      <%= f.date_field :date, class: "form-control" %>
+    </div>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  </div>
+</div>

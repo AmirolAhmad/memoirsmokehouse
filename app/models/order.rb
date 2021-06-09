@@ -2,6 +2,7 @@ class Order < ApplicationRecord
   belongs_to :state
   has_many :order_menus, dependent: :destroy
   has_many :menu, through: :order_menus
+  belongs_to :delivery_date
   enum status: %i[received preparing delivering delivered cancelled]
 
   after_create :create_orderid

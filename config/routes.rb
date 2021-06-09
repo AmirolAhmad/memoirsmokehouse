@@ -29,6 +29,11 @@ Rails.application.routes.draw do
       end
     end
     resources :promocodes, except: [:show]
+    resources :delivery_dates, except: [:show] do
+      member do
+        patch :mark_inactive
+      end
+    end
   end
   get '/search' => 'orders#search'
 end

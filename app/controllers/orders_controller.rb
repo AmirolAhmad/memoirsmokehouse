@@ -1,10 +1,12 @@
 class OrdersController < ApplicationController
   def new
+    @delivery_date = DeliveryDate.order('date ASC')
     @order ||= Order.new
     render
   end
 
   def create
+    @delivery_date = DeliveryDate.all
     @order = Order.new order_params
     if @order.promocode.present?
       @promo = Promocode.find_by_code(@order.promocode)
@@ -34,6 +36,7 @@ class OrdersController < ApplicationController
 
   def search
     @order = Order.find_by_orderid params[:search]
+    @promo = Promocode.find_by_code(@order.promocode)
     if @order
       render
     else
@@ -44,6 +47,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:fullname, :phone_number, :address1, :address2, :city, :postcode, :state_id, :status, :total_price, :delivery_method, :delivery_surcharge, :promocode, :note, menu_ids:[])#, order_menus_attributes: [:_destroy, :id, :order_id, :menu_id, :total_price])
+    params.require(:order).permit(:fullname, :phone_number, :address1, :address2, :city, :postcode, :state_id, :status, :total_price, :delivery_method, :delivery_surcharge, :promocode, :note, :delivery_date_id, menu_ids:[])#, order_menus_attributes: [:_destroy, :id, :order_id, :menu_id, :total_price])
   end
 end

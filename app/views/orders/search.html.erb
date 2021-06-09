@@ -70,6 +70,10 @@
                 <td><%= @order.delivery_method %></td>
               </tr>
               <tr>
+                <th scope="row" class="table-dark">Delivery Date</th>
+                <td><%= @order.delivery_date_id? ? @order.delivery_date.date.strftime('%a, %d %b %Y') : "N/A" %></td>
+              </tr>
+              <tr>
                 <th scope="row" class="table-dark">Delivery Surcharge</th>
                 <td><%= number_to_currency(@order.delivery_surcharge, unit: "RM") %></td>
               </tr>

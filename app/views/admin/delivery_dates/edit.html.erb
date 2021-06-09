@@ -1,0 +1,12 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      <%= render "admin/sidebar" %>
+    </div>
+    <div class="col">
+      <%= form_for @delivery_date, url: admin_delivery_date_path(@delivery_date), multipart: true, html: { method: :patch } do |f| %>
+        <%= render partial: 'form', locals: {f: f, delivery_date: @delivery_date} %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -12,8 +12,9 @@
             <th>Full Name</th>
             <th>Delivery Method</th>
             <th>Total Price</th>
-            <th colspan=2>Status</th>
+            <th colspan="2">Status</th>
             <th>Date Created</th>
+            <th>Delivery Date</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -43,6 +44,7 @@
                 <% end %>
               </td>
               <td><%= order.created_at.strftime("%d %B %Y") %></td>
+              <td><%= order.delivery_date_id? ? order.delivery_date.date.strftime('%a, %d %b %Y') : "N/A" %></td>
               <td>
                 <%= link_to "Preview", admin_order_path(order), class: "btn btn-primary btn-sm" %>
                 <%= link_to 'Delete', admin_order_path(order), method: :delete, data: { confirm: 'Are you sure?', turbolinks: false }, class: "btn btn-danger btn-sm" %>

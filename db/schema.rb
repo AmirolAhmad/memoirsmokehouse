@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_06_004928) do
+ActiveRecord::Schema.define(version: 2021_06_09_021107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "delivery_dates", force: :cascade do |t|
+    t.date "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "status", default: 0, null: false
+  end
 
   create_table "menus", force: :cascade do |t|
     t.string "default_picture"
@@ -54,6 +61,8 @@ ActiveRecord::Schema.define(version: 2021_06_06_004928) do
     t.boolean "paid", default: false
     t.string "promocode"
     t.text "note"
+    t.bigint "delivery_date_id"
+    t.index ["delivery_date_id"], name: "index_orders_on_delivery_date_id"
     t.index ["state_id"], name: "index_orders_on_state_id"
   end
 
@@ -96,5 +105,6 @@ ActiveRecord::Schema.define(version: 2021_06_06_004928) do
 
   add_foreign_key "order_menus", "menus"
   add_foreign_key "order_menus", "orders"
+  add_foreign_key "orders", "delivery_dates"
   add_foreign_key "orders", "states"
 end

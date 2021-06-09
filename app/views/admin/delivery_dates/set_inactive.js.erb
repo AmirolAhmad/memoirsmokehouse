@@ -1,0 +1,2 @@
+$("#delivery_date-setstatus_<%= @delivery_date.id %>").html("<span class='badge bg-danger'>In Active</span>".html_safe);
+$("#delivery_date-status_<%= @delivery_date.id %>").html("<%=j link_to 'In Active', mark_inactive_admin_delivery_date_path(@order), method: :patch, remote: true, class: 'btn btn-warning btn-sm' %>");
