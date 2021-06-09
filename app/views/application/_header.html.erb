@@ -28,7 +28,7 @@
       </ul>
       <%= form_tag(search_path, method: :get, class: "d-flex") do %>
         <%= text_field_tag :search, params[:search], placeholder: "Search by Order ID", class: "form-control me-2" %>
-        <%= submit_tag ("Search"), class: "btn btn-outline-success" %>
+        <%= submit_tag ("Search"), class: "btn btn-outline-success", name: nil %>
       <% end %>
     </div>
   </div>

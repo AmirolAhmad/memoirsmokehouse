@@ -35,5 +35,5 @@ Rails.application.routes.draw do
       end
     end
   end
-  get '/search' => 'orders#search'
+  get '/order' => 'orders#search', as: 'search'
 end
