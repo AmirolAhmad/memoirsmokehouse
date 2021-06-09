@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Memoir Smoke House</title>
+    <title><%= (title = yield :title).blank? ? "Memoir Smoke House" : title %></title>
     <meta name="description" content="We provide a wide variety of premium smoked-based meat foods; takes about 12 hours and up to cook. Definitely a taste that you will never forget!">
+    <meta name="keyword" content="memoir smoke house, beef brisket, malaysia beef brisket, premium beef brisket, new zealand brisket, australian brisket, australia beef brisket, rubiest development, my memoir camper, tomahawk wagyu, wagyu, texas beef brisket">
     <meta name="author" content="Rubiest Development">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
