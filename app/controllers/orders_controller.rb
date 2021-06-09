@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @delivery_date = DeliveryDate.all
+    @delivery_date = DeliveryDate.order('date ASC')
     @order = Order.new order_params
     if @order.promocode.present?
       @promo = Promocode.find_by_code(@order.promocode)
