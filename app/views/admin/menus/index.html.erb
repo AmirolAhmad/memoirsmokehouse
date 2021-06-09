@@ -25,7 +25,11 @@
               <td><%= menu.weight %></td>
               <td><%= number_to_currency(menu.price, unit: "RM") %></td>
               <td><%= menu.instock? ? "In Stock" : "Out of Stock" %></td>
-              <td><%= link_to "Edit", edit_admin_menu_path(menu), class: "btn btn-success btn-sm" %></td>
+              <td>
+                <%= link_to edit_admin_menu_path(menu), class: "btn btn-success btn-sm" do %>
+                  <i class="fas fa-edit"></i> Edit
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>

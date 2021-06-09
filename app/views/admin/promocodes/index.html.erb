@@ -33,8 +33,12 @@
               <td><%= check_promo_status(promocode) %></td>
               <td>
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                  <%= link_to "Edit", edit_admin_promocode_path(promocode), class: "btn btn-success" %>
-                  <%= link_to 'Delete', admin_promocode_path(promocode), method: :delete, data: { confirm: 'Are you sure?', turbolinks: false }, class: "btn btn-danger" %>
+                  <%= link_to edit_admin_promocode_path(promocode), class: "btn btn-success" do %>
+                    <i class="fas fa-edit"></i> Edit
+                  <% end %>
+                  <%= link_to admin_promocode_path(promocode), method: :delete, data: { confirm: 'Are you sure?', turbolinks: false }, class: "btn btn-danger" do %>
+                    <i class="fas fa-trash-alt"></i>
+                  <% end %>
                 </div>
               </td>
             </tr>

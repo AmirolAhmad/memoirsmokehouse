@@ -13,6 +13,7 @@ global.$ = jQuery;
 import 'datatables.net-bs4'
 
 import "bootstrap"
+import "@fortawesome/fontawesome-free/css/all"
 import "../stylesheets/application"
 
 Rails.start()

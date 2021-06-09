@@ -7,7 +7,9 @@
       <h1 class="display-5 fw-bold lh-1 mb-3">The Best Beef Brisket in Town</h1>
       <p class="lead">We provide a wide variety of premium smoked-based meat foods; takes about 12 hours and up to cook. Definitely a taste that you will never forget!</p>
       <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-        <%= link_to "Order NOW!", new_order_path, class: "btn btn-primary btn-lg px-4 me-md-2" %>
+        <%= link_to new_order_path, class: "btn btn-primary btn-lg px-4 me-md-2" do %>
+          <i class="fas fa-cart-arrow-down"></i> Order NOW!
+        <% end %>
       </div>
     </div>
   </div>
