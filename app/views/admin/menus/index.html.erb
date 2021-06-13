@@ -26,9 +26,14 @@
               <td><%= number_to_currency(menu.price, unit: "RM") %></td>
               <td><%= menu.instock? ? "In Stock" : "Out of Stock" %></td>
               <td>
-                <%= link_to edit_admin_menu_path(menu), class: "btn btn-success btn-sm" do %>
-                  <i class="fas fa-edit"></i> Edit
-                <% end %>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                  <%= link_to edit_admin_menu_path(menu), class: "btn btn-success btn-sm" do %>
+                    <i class="fas fa-edit"></i> Edit
+                  <% end %>
+                  <%= link_to admin_menu_path(menu), method: :delete, data: { confirm: 'Are you sure?', turbolinks: false }, class: "btn btn-danger" do %>
+                    <i class="fas fa-trash-alt"></i>
+                  <% end %>
+                </div>
               </td>
             </tr>
           <% end %>

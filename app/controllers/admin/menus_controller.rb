@@ -35,6 +35,15 @@ class Admin::MenusController < AdminController
     end
   end
 
+  def destroy
+    @menu = Menu.find params[:id]
+    if @menu.destroy
+      redirect_to admin_menus_path, notice: 'Menu Deleted!'
+    else
+      render 'index'
+    end
+  end
+
   private
 
   def menu_params

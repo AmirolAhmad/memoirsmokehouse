@@ -1,6 +1,9 @@
 class Admin::OrdersController < AdminController
   def index
-    @orders = Order.order('created_at ASC')
+    @uncomplete_orders = Order.order('created_at ASC').where('status != ?', 3).where('status != ?', 4)
+    @unpaid_orders = Order.order('created_at ASC').where('paid= ?', false) - @uncomplete_orders
+    @pending_orders = @uncomplete_orders + @unpaid_orders
+    @completed_orders = Order.order('created_at ASC').where('paid= ?', true).where('status= ?', 3)
   end
 
   def show
