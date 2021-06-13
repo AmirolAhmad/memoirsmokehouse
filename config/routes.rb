@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get '/contact' => 'homepage#contact'
   namespace :admin, path: '/master' do
     get "/" => "dashboard#index", as: 'master'
-    resources :menus, except: [:show, :destroy]
+    resources :menus, except: [:show]
     resources :orders, except: [:new, :create, :edit, :update] do
       member do
         patch :mark_preparing
